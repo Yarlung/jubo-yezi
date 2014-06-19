@@ -633,9 +633,6 @@ a:focus {
 */
 .site-footer {
   padding-top: 80px;
-  padding-bottom: 30px;
-  margin-left: 100px;
-  margin-right: 100px;
 }
 
 .site-footer ul li {
@@ -644,6 +641,12 @@ a:focus {
 	list-style:none;
 	margin-left: 10px;
 }
+
+
+.site-footer-xs{
+  padding-top: 80px;
+}
+
 
 /*
 .site-footer a {
