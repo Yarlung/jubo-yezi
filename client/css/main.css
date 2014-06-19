@@ -1,6 +1,8 @@
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);*/
 body {
-  background: #e5e5e5;
+/*  background: #e5e5e5;*/
   color: #999;
+  padding-top: 70px;
 }
 h1,
 h2,
@@ -46,6 +48,7 @@ a:focus {
   height: 80px;
   z-index: 99999;
 }
+/*
 #main-slider {
   background-image: url(/images/slider-bg.jpg);
   background-attachment: fixed;
@@ -119,7 +122,9 @@ a:focus {
   text-shadow: 0 3px rgba(0, 0, 0, 0.1);
   color: #fff;
 }
+*/
 
+/*
 #app-store .prev,
 #app-store .next {
   position: absolute;
@@ -284,17 +289,19 @@ a:focus {
 .portfolio-item:hover .overlay {
   opacity: 1;
 }
+*/
 /* Start: Recommended Isotope styles */
 /**** Isotope Filtering ****/
-.isotope-item {
+/*.isotope-item {
   z-index: 2;
 }
 .isotope-hidden.isotope-item {
   pointer-events: none;
   z-index: 1;
 }
+*/
 /**** Isotope CSS3 transitions ****/
-.isotope,
+/*.isotope,
 .isotope .isotope-item {
   -webkit-transition-duration: 0.8s;
   -moz-transition-duration: 0.8s;
@@ -316,8 +323,9 @@ a:focus {
   -o-transition-property: -o-transform, opacity;
   transition-property: transform, opacity;
 }
+*/
 /**** disabling Isotope CSS3 transitions ****/
-.isotope.no-transition,
+/*.isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
   -webkit-transition-duration: 0s;
@@ -326,9 +334,10 @@ a:focus {
   -o-transition-duration: 0s;
   transition-duration: 0s;
 }
+*/
 /* End: Recommended Isotope styles */
 /* disable CSS transitions for containers with infinite scrolling*/
-.isotope.infinite-scrolling {
+/*.isotope.infinite-scrolling {
   -webkit-transition: none;
   -moz-transition: none;
   -ms-transition: none;
@@ -485,6 +494,7 @@ a:focus {
 .icon-social:hover {
   color: #fff;
 }
+*/
 .navbar-default {
   background: #fff;
   border-radius: 0 0 5px 5px;
@@ -498,20 +508,27 @@ a:focus {
 .navbar-default .first a {
   border-radius: 0 0 0 5px;
 }
-.navbar-default .navbar-brand {
-  margin-right: 50px;
-  margin-left: 20px;
-  width: 200px;
-  height: 78px;
-  background: url(/images/logos/jubo.png) no-repeat 0 50%;
+
+.navbar-default .navbar-brand {	
+	margin-right: 20px;
+	margin-left: 100px;
+	width: 100px;
+	/*height: 78px;*/
+	background: url(/images/logos/jubo.png) no-repeat 0 50%;
 }
+
+.navbar-default .navbar-logout {
+	width: 160px;
+}
+
 .navbar-default .navbar-nav > li {
   margin-left: 1px;
 }
 .navbar-default .navbar-nav > li > a {
-  padding: 30px 25px;
-  font-size: 16px;
-  line-height: 18px;
+  /*padding: 30px 10px;*/
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 40px;
   color: #999;
 }
 .navbar-default .navbar-nav > li > a > i {
@@ -527,9 +544,43 @@ a:focus {
 .navbar-default .navbar-nav > li.active:hover > a:focus,
 .navbar-default .navbar-nav > li:hover > a:focus,
 .navbar-default .navbar-nav > li:focus > a:focus {
-  background-color: #52b6ec;
-  color: #fff;
+/*  background-color: #52b6ec;*/
+  color: #0066cc;
 }
+
+.form-signin {
+	max-width: 380px;
+	padding: 10px;
+	margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+{
+    margin-bottom: 10px;
+}
+
+.form-signin .form-control {
+	position: relative;
+    font-size: 14px;
+	height: auto;
+    padding: 10px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+.panel-default {
+	max-width: 400px;
+	margin: 0 auto;
+}
+.panel-default .panel-heading {
+	font-size: 16px;
+	font-weight: bold;
+	background: #AAAAAA; 
+}
+
+/*
 .icon-lg {
   font-size: 48px;
   height: 108px;
@@ -579,17 +630,30 @@ a:focus {
 .big-gap {
   margin-bottom: 100px;
 }
-#footer {
-  padding-top: 30px;
+*/
+.site-footer {
+  padding-top: 80px;
   padding-bottom: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.site-footer ul li {
+	floate: left;
+	display: inline;
+	list-style:none;
+	margin-left: 10px;
+}
+
+/*
+.site-footer a {
   color: #999;
 }
-#footer a {
-  color: #999;
-}
-#footer a:hover {
+.site-footer a:hover {
   color: #52b6ec;
 }
+*/
+/*
 ul.social {
   list-style: none;
   margin: 10px 0 0;
@@ -659,32 +723,4 @@ textarea#message {
     -o-transform: scale(1);
   }
 }
-body {
-	  padding-top: 40px;
-	    padding-bottom: 40px;
-		  background-color: #eee;
-	  }
-
-	  .form-signin {
-		  max-width: 330px;
-		  padding: 15px;
-		  margin: 0 auto;
-		}
-		.form-signin .form-signin-heading,
-		{
-			margin-bottom: 10px;
-		}
-
-		.form-signin .form-control {
-			position: relative;
-			font-size: 16px;
-			height: auto;
-			padding: 10px;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-		}
-		.form-signin .form-control:focus {
-			z-index: 2;
-		}
-
+*/

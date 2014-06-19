@@ -6,9 +6,9 @@
 standard-app-packages
 autopublish
 insecure
-bootstrap-3
 font-awesome
 jquery
 accounts-password
 accounts-base
-accounts-ui-unstyled
+bootstrap-3
+iron-router
