@@ -16,9 +16,27 @@
     </div>
 </template>
 
+<template name='recoveryPasswordForm'>
+<div class="panel panel-default">
+    <div class="panel-heading">忘记密码</div>
+    <div class='panel-body'>
+        <form id="new-password">
+            <div class="form-group">
+                <label>新密码</label>
+                <input type="text" id="new-password" class="form-control" autofocus value="">
+            </div>
+            <div class="form-group">
+                <input type='submit' class='btn btn-pink large wide' value='修改密码' />
+            </div>
+        </form>
+    </div>
+</div>
+</template>
+
 <template name='loginForm'>
 <body>
 <div class="container">
+{{#if loginForm}}
 {{#if currentUser}}
     {{#unless loggingIn}}
         {{> showApps}}
@@ -38,7 +56,7 @@
             </div>
              <div class="form-group">
                 <div>
-                    <label>密码<a href='#' id='forgot-password'>(忘记密码)</a></label>
+                    <label>密码<a href='#forgotPassword' id='forgot-password'>(忘记密码)</a></label>
                     <input type="password" name="password" id="login-password" class="form-control" autofocus palceholder="请输入密码" value="">
                     <span class="help-block"></span>
                 </div>
@@ -46,6 +64,7 @@
              <div class="form-group">
                 <div>
                     <input type="submit" class="btn btn-parimary btn-lg btn-block" value="登录">
+                    <a href='#' id='create-account'>create account</a>
                     <span class="help-block"></span>
                 </div>
             </div>
@@ -53,6 +72,11 @@
     </div>
     </div>
     {{/unless}}
+    {{/if}}
+{{/if}}
+
+    {{#if recoveryPassword}}
+        {{> recoveryPasswordForm}}
     {{/if}}
 
     {{#if createAccount}}

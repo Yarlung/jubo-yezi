@@ -27,8 +27,11 @@ Template.loginForm.helpers({
 
     createAccount: function(){
         return Session.equals('formView', 'createAccountForm');
-    }
+    },
 
+    recoveryPassword: function(){
+        return Session.equals('formView', 'recoveryPasswordForm');
+    }
 });
 
 
@@ -47,6 +50,10 @@ Template.loginForm.events({
             });
         }
         return false;
+    },
+
+    'click #forgot-password' : function(e,t) {
+        Session.set('formView','recoveryPasswordForm');
     },
 
     'click #create-account' : function(e, t) {
@@ -75,4 +82,31 @@ Template.createAccountForm.events({
         });
     }
     }
+});
+
+/*
+Template.recoveryPasswordForm.helpers({
+    resetToken: function(){
+        return Session.get(recoveryPassword);
+    }
+});
+*/
+
+Template.recoveryPasswordForm.events({
+    'submit #new-password-form' : function(e,t) {
+        var password = t.find('#new-password').value;
+        if(isNotEmpty(password,'accountError'))
+        {
+            Session.set('loading',true);
+            Accounts.resetPassword(Session.get('resetPassword'), password, function(err){
+                if(err)
+                    Session.set('displayMessage', 'Password Reset Error & '+ err.reason);
+                else
+                    Session.set('resetPassword', null);
+
+               Session.set('loading', false);
+            });
+        }
+    }
+    return false;
 });
