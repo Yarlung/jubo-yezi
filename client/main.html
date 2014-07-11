@@ -8,6 +8,18 @@
 
 <body>
     {{> navigation}}
-    {{> loginForm}}
+    {{> body}}
     {{> siteFooter}}
 </body>
+
+<template name="body">
+<body>
+{{#if currentUser}}
+    {{> showApps}}
+{{else}}
+    {{> loginForm}}
+{{/if}}
+</body>
+
+</template>
+

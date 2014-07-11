@@ -1,15 +1,25 @@
 <template name="showApps">
-    <div class="applications">
-        {{#each applications}}
-            {{> showOneApp}}
-        {{/each}}
-    </div>
+<div class="container">
+    {{#if showApp}}
+        <div class="applications">
+            {{#each applications}}
+                {{> showOneApp}}
+            {{/each}}
+        </div>
+    {{/if}}
+    
+    {{#if showSystem}}
+        {{> system}}
+    {{/if}}
+</div>
 </template>
 
 <template name="showOneApp">
     <div class="col-xs-4 col-sm-2"> 
         <div class="center">
-            <img src="/images/logos/{{name}}.png" alt="">
+            <a href="{{pathFor 'systemSetting'}}" id="get-in-app">
+                <img src="/images/logos/{{name}}.jpg" alt="">
+            </a>
             <h4>{{name}}</h4>
         </div>
     </div>

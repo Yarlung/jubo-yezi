@@ -6,7 +6,8 @@ function onLogin(err){
     }
 
     console.log("login successful");
-    Session.set('loginForm',false);
+    Session.set('login',false);
+    Session.set('display','apps');
 }
 
 function isNotEmpty(val,field){
@@ -18,19 +19,20 @@ function isNotEmpty(val,field){
     return true;
 }
 
-
 Template.loginForm.helpers({
-    loginForm: function(){
-        if(!Session.get('formView'))
+    login: function(){
+        if(!Session.get('display'))
             return true;
     },
 
     createAccount: function(){
-        return Session.equals('formView', 'createAccountForm');
+        console.log("create", Session.get('display'));
+        return Session.equals('display', 'createAccountForm');
     },
 
     recoveryPassword: function(){
-        return Session.equals('formView', 'recoveryPasswordForm');
+        console.log("recovery",Session.get('display'));
+        return Session.equals('display', 'recoveryPasswordForm');
     }
 });
 
@@ -52,17 +54,19 @@ Template.loginForm.events({
         return false;
     },
 
-    'click #forgot-password' : function(e,t) {
-        Session.set('formView','recoveryPasswordForm');
+    'click #forgot-password' : function() {
+        Session.set('display','recoveryPasswordForm');
     },
 
-    'click #create-account' : function(e, t) {
-        Session.set('formView', 'createAccountForm');
+    'click #create-account' : function() {
+        console.log("set create account session");
+        Session.set('display', 'createAccountForm');
+        //console.log(Session.get('display'));
     },
 });
 
 Template.loginForm.destroyed = function(){
-      Session.set('formView', null);
+      Session.set('display', null);
 };
 
 Template.createAccountForm.events({
@@ -107,6 +111,7 @@ Template.recoveryPasswordForm.events({
                Session.set('loading', false);
             });
         }
+
+        return false;
     }
-    return false;
 });
