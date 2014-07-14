@@ -16,11 +16,11 @@
 
 <template name="showOneApp">
     <div class="col-xs-4 col-sm-2"> 
-        <div class="center">
-            <a href="{{pathFor 'systemSetting'}}" id="get-in-app">
-                <img src="/images/logos/{{name}}.jpg" alt="">
+        <div class="center text-center">
+            <a href="{{url}}" id="get-in-app">
+                <img src="/images/logos/{{name}}.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
             </a>
-            <h4>{{name}}</h4>
+            <p><strong>{{alias}}</strong></p>
         </div>
     </div>
 </template>

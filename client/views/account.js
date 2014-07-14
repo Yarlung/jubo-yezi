@@ -5,7 +5,6 @@ function onLogin(err){
         return;
     }
 
-    console.log("login successful");
     Session.set('login',false);
     Session.set('display','apps');
 }
@@ -26,12 +25,10 @@ Template.loginForm.helpers({
     },
 
     createAccount: function(){
-        console.log("create", Session.get('display'));
         return Session.equals('display', 'createAccountForm');
     },
 
     recoveryPassword: function(){
-        console.log("recovery",Session.get('display'));
         return Session.equals('display', 'recoveryPasswordForm');
     }
 });
@@ -43,10 +40,8 @@ Template.loginForm.events({
         var username = t.find('#login-username').value;
         var password = t.find('#login-password').value;
 
-        console.log("loginForm events");
         if(isNotEmpty(password,'loginError'))
         {
-            console.log("loginForm events loginWithPassword");
             Meteor.loginWithPassword(username,password,function(err){
                 onLogin(err);
             });
@@ -59,9 +54,7 @@ Template.loginForm.events({
     },
 
     'click #create-account' : function() {
-        console.log("set create account session");
         Session.set('display', 'createAccountForm');
-        //console.log(Session.get('display'));
     },
 });
 
@@ -77,7 +70,6 @@ Template.createAccountForm.events({
     if (isNotEmpty(username, 'accountError') && isNotEmpty(password, 'accountError'))
     {
         Session.set('loading', true);
-        console.log("create account");
         Accounts.createUser({username: username, password : password}, function(err){
             if (err && err.error === 403) {
                 Session.set('displayMessage', 'Account Creation Error &' + err.reason);

@@ -13,7 +13,6 @@ Template.showApps.helpers({
     },
     
     showSystem: function(){
-        console.log('showSystem',Session.get('display'));
         return Session.equals('display', 'getInApp');
     }
 });
