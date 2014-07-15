@@ -1,0 +1,29 @@
+<template name="setting">
+<div class="container main">
+    <div class="row">
+        <div class="col-xs-3 side">
+            <ul>
+                <li></li>
+                <li id="setting-device"><a href="/setting/device">设备信息</a></li>
+                <li id="setting-account"><a href="/setting/account">账号管理</a></li>
+                <li id="setting-wifi"><a href="/setting/wifi">WiFi设置</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-offset-1 col-xs-8 content">
+            {{#if showDevice}}
+                {{> device}}
+            {{/if}}
+
+            {{#if showAccount}}
+                {{> account}}
+            {{/if}}
+
+            {{#if showWifi}}
+                {{> wifi}} 
+            {{/if}}
+        </div>
+    </div>
+</div>
+</template>
+
+

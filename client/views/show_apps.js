@@ -12,7 +12,7 @@ Template.showApps.helpers({
         else return "0";
     },
     
-    showSystem: function(){
+    showSetting: function(){
         return Session.equals('display', 'getInApp');
     }
 });
