@@ -1,23 +1,25 @@
 <template name="showApps">
-<div class="container">
     {{#if showApp}}
+    <div class="container">
         <div class="applications">
             {{#each applications}}
                 {{> showOneApp}}
             {{/each}}
         </div>
+    </div>
     {{/if}}
-    
+
     {{#if showSetting}}
         {{> setting}}
     {{/if}}
-</div>
+
+
 </template>
 
 <template name="showOneApp">
     <div class="col-xs-4 col-sm-2"> 
         <div class="center text-center">
-            <a href="{{url}}" id="get-in-app">
+            <a href="#setting" id="get-in-app">
                 <img src="/images/logos/{{name}}.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
             </a>
             <p><strong>{{alias}}</strong></p>

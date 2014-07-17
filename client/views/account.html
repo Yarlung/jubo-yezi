@@ -76,3 +76,19 @@
     {{/if}}
 </div>
 </template>
+
+<template name="account">
+<div class="panel ">
+    <div class="panel-heading">修改密码</div>
+    <div class="panel-body" id="change-password">
+            <label>旧密码</label>
+            <input type="password" class="form-control" id="old-password" > 
+            <label>新密码</label>
+            <input type="password" name="password" id="new-password-first">
+            <label>再次输入新密码</label>
+            <input type="password" name="password" id="new-password-second">
+            <input type="submit" class="btn btn-parimary btn-lg btn-block" value="修改密码">
+    </div>
+</div>
+</template>
+

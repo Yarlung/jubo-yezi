@@ -80,13 +80,23 @@ Template.createAccountForm.events({
     }
 });
 
-/*
-Template.recoveryPasswordForm.helpers({
-    resetToken: function(){
-        return Session.get(recoveryPassword);
+Template.account.events({
+    'submit #change-password' : function(e,t) {
+        var old = t.find('#old-password').value;
+        var first = t.find('#new-password-first').value;
+        var second = t.find('#new-password-second').value;
+
+        if(isNotEmpty(old,'password empty') && 
+          isNotEmpty(first,'password empty') && isNotEmpty(second,'password empty'))
+        {
+            // TODO  if first != second log error
+
+            Session.set('loading',true);
+            Accounts.changePassword(old,first);
+            Session.set('loading',false);
+        }
     }
 });
-*/
 
 Template.recoveryPasswordForm.events({
     'submit #new-password-form' : function(e,t) {

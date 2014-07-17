@@ -22,7 +22,7 @@ Template.setting.events({
     },
 
     'click #setting-account' : function() {
-        Session.set('displaySetting','accout');
+        Session.set('displaySetting','account');
     },
 
     'click #setting-wifi' : function() {

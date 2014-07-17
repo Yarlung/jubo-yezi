@@ -1,29 +1,45 @@
 <template name="setting">
 <div class="container main">
     <div class="row">
-        <div class="col-xs-3 side">
+        <div class="col-md-offset-1 col-xs-12 col-md-2 list-group">
+            <a href="#" class="list-group-item disabled">设置</a>
+            <a href="#setting/device" id="setting-device" class="list-group-item">设备信息</a>
+            <a href="#setting/account" id="setting-account" class="list-group-item">账号管理</a>
+            <a href="#setting/wifi" id="setting-wifi" class="list-group-item">WiFi设置</a>
+
+            {{!--
             <ul>
                 <li></li>
-                <li id="setting-device"><a href="/setting/device">设备信息</a></li>
-                <li id="setting-account"><a href="/setting/account">账号管理</a></li>
-                <li id="setting-wifi"><a href="/setting/wifi">WiFi设置</a></li>
+                <li id="setting-device"><a href="#setting/device">设备信息</a></li>
+                <li id="setting-account"><a href="#setting/account">账号管理</a></li>
+                <li id="setting-wifi"><a href="#setting/wifi">WiFi设置</a></li>
             </ul>
+            --}}
         </div>
-        <div class="col-xs-offset-1 col-xs-8 content">
+        <div class="col-xs-12 col-md-8">
             {{#if showDevice}}
                 {{> device}}
             {{/if}}
-
+            
             {{#if showAccount}}
                 {{> account}}
             {{/if}}
-
+            
             {{#if showWifi}}
-                {{> wifi}} 
+                {{> wifi}}
             {{/if}}
         </div>
     </div>
 </div>
 </template>
+
+<template name="device">
+    <h1>device</h1>
+</template>
+
+<template name="wifi">
+    <h1>wifi</h1>
+</template>
+
 
 

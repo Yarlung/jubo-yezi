@@ -7,19 +7,36 @@
 </head>
 
 <body>
-    {{> navigation}}
     {{> body}}
-    {{> siteFooter}}
 </body>
 
 <template name="body">
 <body>
-{{#if currentUser}}
-    {{> showApps}}
+{{#if needLaunch}}
+    {{> launch}}
 {{else}}
-    {{> loginForm}}
+    {{> navigation}}
+
+    {{#if currentUser}}
+        {{#unless loggingIn}}
+            {{> showApps}}
+        {{/unless}}
+    {{else}}
+        {{#unless loggingIn}}
+            {{> loginForm}}
+        {{/unless}}
+    {{/if}}
+        {{> body}}
+
+    {{> siteFooter}}
 {{/if}}
 </body>
 
 </template>
+
+<template name="launch">
+<h1>init</h1>
+</template>
+
+
 
