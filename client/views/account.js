@@ -42,9 +42,11 @@ Template.loginForm.events({
 
         if(isNotEmpty(password,'loginError'))
         {
+            Session.set('loading',true);
             Meteor.loginWithPassword(username,password,function(err){
                 onLogin(err);
             });
+            Session.set('loading',false);
         }
         return false;
     },
@@ -64,36 +66,40 @@ Template.loginForm.destroyed = function(){
 
 Template.createAccountForm.events({
     'submit #register-form' : function(e, t) {
-    var username = t.find('#account-username').value;
-    var password = t.find('#account-password').value;
+        var username = t.find('#account-username').value;
+        var password = t.find('#account-password').value;
                                  
-    if (isNotEmpty(username, 'accountError') && isNotEmpty(password, 'accountError'))
-    {
-        Session.set('loading', true);
-        Accounts.createUser({username: username, password : password}, function(err){
-            if (err && err.error === 403) {
-                Session.set('displayMessage', 'Account Creation Error &' + err.reason);
-                Session.set('loading', false);
-            } 
-        });
-    }
+        if (isNotEmpty(username, 'accountError') && isNotEmpty(password, 'accountError'))
+        {
+            Session.set('loading', true);
+            Accounts.createUser({username: username, password : password}, function(err){
+                if (err && err.error === 403) {
+                    Session.set('displayMessage', 'Account Creation Error &' + err.reason);
+                } 
+            });
+            Session.set('loading', false);
+        }
     }
 });
 
 Template.account.events({
     'submit #change-password' : function(e,t) {
         var old = t.find('#old-password').value;
-        var first = t.find('#new-password-first').value;
-        var second = t.find('#new-password-second').value;
+        var first = t.find('#new-password').value;
+        var second = t.find('#new-password-again').value;
+
+        console.log('change password');
 
         if(isNotEmpty(old,'password empty') && 
           isNotEmpty(first,'password empty') && isNotEmpty(second,'password empty'))
         {
-            // TODO  if first != second log error
+            // TODO  if first != second; log error
 
             Session.set('loading',true);
             Accounts.changePassword(old,first);
             Session.set('loading',false);
+            Session.set('hiddenApps',null);
+            Session.set('display',null);
         }
     }
 });

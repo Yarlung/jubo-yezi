@@ -3,7 +3,6 @@ Template.navigation.events({
         Meteor.logout();
         Session.set('hiddenApps',null);
         Session.set('display',null);
-        Router.go('home');
         return false;
     }
 });

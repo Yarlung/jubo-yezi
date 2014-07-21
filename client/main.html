@@ -26,7 +26,6 @@
             {{> loginForm}}
         {{/unless}}
     {{/if}}
-        {{> body}}
 
     {{> siteFooter}}
 {{/if}}
@@ -35,7 +34,24 @@
 </template>
 
 <template name="launch">
-<h1>init</h1>
+<div class="panel panel-default panel-login">
+    <div class="panel-heading">设置WiFi密码(与设备管理密码相同)</div>
+    <div class='panel-body' id="set-wifi-password">
+        <p>
+        <label>WiFi名称</label>
+        <input type="text" id="launch-wifi-name" class="form-control" >
+        </p>
+        <p>
+        <label>密码设置</label>
+        <input type="password" id="launch-new-password" class="form-control" >
+        </p>
+        <p>
+            <label>确认密码</label>
+            <input type="password" id="launch-new-password-again" class="form-control" >
+        </p>
+        <p><button type='button' class='btn btn-primary' id="create-wifi">下一步</button></p>
+    </div>
+</div>
 </template>
 
 

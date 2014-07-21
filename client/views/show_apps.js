@@ -20,7 +20,6 @@ Template.showApps.helpers({
 
 Template.showApps.events({
     'click #get-in-app' : function() {
-        console.log('set getInApp');
         Session.set('display','getInApp');
         Session.set('hiddenApps','no');
     },
