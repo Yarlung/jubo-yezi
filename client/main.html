@@ -12,23 +12,11 @@
 
 <template name="body">
 <body>
-{{#if needLaunch}}
-    {{> launch}}
-{{else}}
     {{> navigation}}
 
-    {{#if currentUser}}
-        {{#unless loggingIn}}
-            {{> showApps}}
-        {{/unless}}
-    {{else}}
-        {{#unless loggingIn}}
-            {{> loginForm}}
-        {{/unless}}
-    {{/if}}
+    {{> showApps}}
 
     {{> siteFooter}}
-{{/if}}
 </body>
 
 </template>
