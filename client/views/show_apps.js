@@ -13,14 +13,22 @@ Template.showApps.helpers({
     },
     
     showSetting: function(){
-        console.log('get display',Session.get('display'));
-        return Session.equals('display', 'getInApp');
+        return Session.equals('display', 'setting');
+    },
+
+    showTerminal: function(){
+        return Session.equals('display', 'terminal');
     }
 });
 
 Template.showApps.events({
-    'click #get-in-app' : function() {
-        Session.set('display','getInApp');
+    'click #goto-setting' : function() {
+        Session.set('display','setting');
         Session.set('hiddenApps','no');
     },
+
+    'click #goto-terminal' : function() {
+        Session.set('display','terminal');
+        Session.set('hiddenApps','no');
+    }
 });

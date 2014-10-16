@@ -13,14 +13,17 @@
         {{> setting}}
     {{/if}}
 
+    {{#if showTerminal}}
+        {{> terminal}}
+    {{/if}}
 
 </template>
 
 <template name="showOneApp">
     <div class="col-xs-4 col-sm-2"> 
         <div class="center text-center">
-            <a href="#setting" id="get-in-app">
-                <img src="/images/logos/{{name}}.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
+          <a href="#" id="goto-{{name}}">
+              <img src="/images/logos/{{name}}.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
             </a>
             <p><strong>{{alias}}</strong></p>
         </div>
