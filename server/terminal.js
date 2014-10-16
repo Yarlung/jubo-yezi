@@ -1,79 +1,76 @@
 var future = Npm.require('fibers/future');
 var spawn = Npm.require('child_process').spawn;
 
-function execCmd(data,cli,next) {
-  var cmd = spawn(cli.cmd,cli.args);
-  if(next) {
-  }
-  else {
-    cmd.
+function parseCommand(command) {
+  var cli = {
+    length: 0,
+    command: [
+      {cmd: '', args:[]},
+      {cmd: '', args:[]}]
+  };
+  var explode = command.split('|');
+
+  if(explode.length == 1) {
+    var str = explode.split(' ');
+    cli.command[0].cmd = str[0];
+    cli.command[0].args = str.splice(1,str.length);
+    cli.length = 1;
+  } else if(explode.length == 2) {
+    var str = explode[0].split(' ');
+    cli.command[0].cmd = str[0];
+    cli.command[0].args = str.splice(1,str.length);
+
+    str = explode[1].split(' ');
+    cli.command[1].cmd = str[0];
+    cli.command[1].args = str.splice(1,str.length);
+
+    cli.length = 2;
+
   }
 
-  if(data) 
-    cmd.stdin.write(data);
-  else {
-    cmd.stdout.on('data',function(data) {
-      if(next)
-    });
-  }
-
-  cmd.stdout.on('data', function(data) {
-    if(next) {
-      cmd1 = spawn(next.cmd,next.args);
-      cmd1.stdin.write(data);
-      cmd1.stdout.on('data', function(data) {
-        if(third)
-      });
-    }
-  });
+  return cli;
 }
 
 Meteor.methods({
   jsh: function (command) {
-    console.log("service exec cmd");
-    var cmds
-      var explode = command.split(' ');
-      var cmd = explode[0];
-      var args = explode.splice(1, explode.length);
-      console.log("e:"+cmd+JSON.stringify(args));
+    var shell = new future();
+    var cli = parseCommand(command);
 
-      var shell = new future();
+    if(cli.length === 1) {
+      var cmd = spawn(cli.command[0].cmd,cli.command[0].args);
+      cmd.stdout.on('data', function(data) {
+        shell.return('' + data);
+      });
 
-    cmd = spawn(cli[0].cmd,cli[0].args);
-    cmd.stdout.on('data',function(data) {
-      
-    });
-    if(cli.length === 2) {
+      cmd.stderr.on('data', function(data) {
+        shell.return('' + data);
+      });
+  } else if(cli.length === 2) {
+      var nextCmd = spawn(cli[1].cmd,cli[1].args);
+      cmd.stdout.on('data', function(data) {
+        nextCmd.stdin.write(data);
+      });
+
+      cmd.stderr.on('data', function(data) {
+        shell.return('' + data);
+      });
+
+      cmd.on('close', function(code) {
+        nextCmd.stdin.end();
+      });
+
+      nextCmd.stdout.on('data', function(data) {
+        shell.return('' + data);
+      });
+
+      nextCmd.stderr.on('data', function(data) {
+        shell.return('' + data);
+      });
     } else {
-    }
-  /*_.each(cmdLines, function(cli) {
-    cmd = spawn(cli.cmd,cli.args);
-    cmd.stdout.on('data', function(data) {
-
-    });
-  });
-  */
-    for(i = 0; i < cli.length; i ++) {
-      var cmd = spawn(cli[i].cmd,cli[i].args);
-      cmd.
+      shell.return('' + 'Invalid command');
     }
 
-      if (args.length == 0)
-        ls    = spawn(cmd);
-      else
-        ls    = spawn(cmd , args);
-
-      ls.stdout.on('data', function (data) {
-        console.log(''+data);
-        shell.return(''+data);
-      });
-
-      ls.stderr.on('data', function (data) {
-        console.log(''+data);
-        shell.return(''+data);
-      });
-
-      return fut.wait();
+    return shell.wait();
   }
 });
 
