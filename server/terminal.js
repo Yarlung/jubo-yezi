@@ -11,21 +11,22 @@ function parseCommand(command) {
   var explode = command.split('|');
 
   if(explode.length == 1) {
-    var str = explode.split(' ');
-    cli.command[0].cmd = str[0];
-    cli.command[0].args = str.splice(1,str.length);
-    cli.length = 1;
-  } else if(explode.length == 2) {
     var str = explode[0].split(' ');
     cli.command[0].cmd = str[0];
-    cli.command[0].args = str.splice(1,str.length);
+    cli.command[0].args = str.splice(1,str[str.length] === ' '?str.length--:str.length);
+    cli.length = 1;
+  } else if(explode.length == 2) {
+    var begin = 0;
+    var str = explode[0].split(' ');
+    cli.command[0].cmd = str[0];
+    cli.command[0].args = str.splice(1,str[str.length - 1] === ''?str.length--:str.length);
 
     str = explode[1].split(' ');
-    cli.command[1].cmd = str[0];
-    cli.command[1].args = str.splice(1,str.length);
+    str[0] === ''?begin = 1:begin = 0;
+    cli.command[1].cmd = str[begin];
+    cli.command[1].args = str.splice(begin + 1,str.length);
 
     cli.length = 2;
-
   }
 
   return cli;
@@ -46,7 +47,9 @@ Meteor.methods({
         shell.return('' + data);
       });
   } else if(cli.length === 2) {
-      var nextCmd = spawn(cli[1].cmd,cli[1].args);
+      var cmd = spawn(cli.command[0].cmd,cli.command[0].args);
+      var nextCmd = spawn(cli.command[1].cmd,cli.command[1].args);
+
       cmd.stdout.on('data', function(data) {
         nextCmd.stdin.write(data);
       });
