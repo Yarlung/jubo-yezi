@@ -6,12 +6,9 @@
             +"This is a basic terminal, it will run Linux/Unix commands on the server\n"
             +"and will print on the screen the output."
             +"\n\n"
-            +"\n\n"
-            +"Thanks Meteor Shell"
-            +"source: http://github.com/grigio/meteor-shell\n"
-            +"author: Luigi Maselli"
-            +"\n\n"
-            +"Known Bugs: cd dir command can't use";
+            +"Notes: Don't support cd command\n"
+            +"       Max output buffer is 200*1024." 
+
   }
 
   Template.input.events({
