@@ -1,18 +1,29 @@
 <template name="terminal">
-    {{> input}}
-    {{> buffer}}
+  <div class="container">
+    <div class="row">
+  <div class="panel panel-primary terminal">
+      {{> input}}
+      {{> buffer}}
+  </div>
+    </div>
+  </div>
 </template>
 
 <template name="input">
-  <div id="command-line">
-    <span id="dollar-ui">$</span>
-    <input id="cmd" autofocus />
+  <div class="panel-header">
+    <div class="well well-sm" >
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="dollar-ui">$</span>
+        <input type="text" class="form-control" id="cmd">
+      </div>
+    </div>
   </div>
 </template>
 
 <template name="buffer">
-  <div id="buffer">
+  <div class="panel-body">
     <pre>{{ output }}</pre>
   </div>
 </template>
+
 

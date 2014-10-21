@@ -1,1 +1,1 @@
-apps = new Meteor.Collection('apps');
+apps = new Meteor.Collection('juapps');
