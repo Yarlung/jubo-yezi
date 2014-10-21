@@ -7,11 +7,11 @@ Template.showApps.helpers({
     },
 
     applications: function() {
-        var allApp = apps.find();
+      var allApp = apps.find(priority:{$ne:0});
         if(allApp) return allApp;
         else return "0";
     },
-    
+
     showSetting: function(){
         return Session.equals('display', 'setting');
     },
