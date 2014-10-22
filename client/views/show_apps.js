@@ -7,7 +7,7 @@ Template.showApps.helpers({
     },
 
     applications: function() {
-      var allApp = apps.find(priority:{$ne:0});
+      var allApp = apps.find({priority:{$ne:0}});
         if(allApp) return allApp;
         else return "0";
     },
